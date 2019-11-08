@@ -13,7 +13,6 @@ const teamNames = [
 
 const DropdownTeamNames = () => (
   <Dropdown 
-    styles={{ singleValue: (base) => ({ ...base, padding: 5, borderRadius: 5,  color: 'white', display: 'flex' }) }}
     button 
     className='icon'
     floating
