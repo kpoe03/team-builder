@@ -1,61 +1,49 @@
 import React, { useState } from "react";
-import 'react-dropdown/style.css'
-import DropdownTeamNames from './Dropdown'
-import './Form.css'
+import DropdownTeamNames from "./Dropdown";
+
 
 const Form = props => {
-  const [user, setUser] = useState({ name: "", email: "", role: "" });
+    const [ team, setTeam ] = useState({
+        "name" : "",
+        "email": "",
+         "role": "",
+        DropdownTeamNames
+    });
+    const addMember = event => {
+        setTeam({...team, [event.target.name] : event.target.value});
+    }
 
-  const handleChange = event => {
-    setUser({ ...user, [event.target.name]: event.target.value });
-  };
+    const submitMember = e => {
+        e.preventDefault();
+        props.addsMember(team);
+        setTeam({
+            "name" : "",
+            "email" : "",
+            "role": "",
+            DropdownTeamNames
 
-  const submitForm = event => {
-    event.preventDefault();
-    props.addNewUser(user);
-    setUser({ username: "", email: "", role: "", teamName: "" });
-  };
-
-
-  return (
-    <div className="teamInput">
-      <form onSubmit={event => submitForm(event)}>
-        <label htmlFor="">
-          Name:
-          <input className="boxes"
-            type="text"
-            name="username"
-            value={user.username}
-            onChange={event => handleChange(event)}
-          />
-        </label>
-        <br />
-        <label htmlFor="">
-          Email:
-          <input className="boxes"
-            type="text"
-            name="email"
-            value={user.email}
-            onChange={event => handleChange(event)}
-          />
-        </label>
-        <br />
-        <label htmlFor="">
-          Role:
-          <input className="boxes"
-            type="text"
-            name="role"
-            value={user.role}
-            onChange={event => handleChange(event)}
-          />
-        </label>
-        <br />
-        <DropdownTeamNames />
-        <br />
-        <button type="submit">Submit</button>
-      </form>
-    </div>
-  );
-};
+        });
+        
+    }
+    return(
+        <div>
+            
+            <form className="teamInput" onSubmit={submitMember}>
+                <label className="boxes" htmlFor="name">Name: </label>
+                <input type="text" id="name" name="name" onChange={addMember} />
+                <br />
+                <label htmlFor="email">Email: </label>
+                <input type="text" id="email" name="email" onChange={addMember} />
+                <br />
+                <label htmlFor="role">Role: </label>
+                <input type="text" id="role" name="role" onChange={addMember} />
+                <br />
+                <DropdownTeamNames />
+                <br />
+                <button type="submit">Add</button>
+            </form>
+        </div>
+    )
+}
 
 export default Form;

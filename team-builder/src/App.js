@@ -1,20 +1,37 @@
-import React, { useState } from "react";
-import Form from "./components/Form";
-import "./App.css";
-
+import React, { useState } from 'react';
+import AddMember from "./components/Form";
+import './App.css';
+import DropdownTeamNames from './components/Dropdown';
 
 function App() {
-  const [users, setusers] = useState([
-    { name: "nick", email: "nick@email.com", role: "web", teamName: "UX live" }
+
+  const [ team, setTeam ] = useState([
+    {
+      "name" : "",
+      "email" : "",
+      "role" : "",
+      DropdownTeamNames
+    }
   ]);
 
-  const addNewUser = user => {
-    setusers([...users, user]);
-  };
+  const addMember = (member) => {
+    setTeam([...team, member]);
+  }
+
   return (
     <div className="App">
-      <h1>Team Building</h1>
-      <Form addNewUser={addNewUser} />
+      <AddMember addsMember={addMember} />
+     {team.map((member, index )=> {
+       return(
+         <div key={index}>
+           <h1>{member.name}</h1>
+           <h2>{member.email}</h2>
+           <h3>{member.role}</h3>
+           <h4>{member.Dropdown}</h4>
+         </div>
+       )
+     })}
+      
     </div>
   );
 }
