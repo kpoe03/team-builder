@@ -1,0 +1,13 @@
+.teamInput {
+    display: flex;
+    box-sizing: border-box;
+    margin-left: 1150px;
+    text-align: left;
+    justify-content: space-between;
+}
+
+
+.boxes{
+    margin-bottom: 5px;
+    margin-left: 10px;
+}
